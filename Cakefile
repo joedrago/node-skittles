@@ -9,6 +9,7 @@ task 'build', 'build JS bundle', (options) ->
   coffee = spawn coffeeName, ['-c', '-o', 'js', 'src']
   coffee.stderr.on 'data', (data) ->
     process.stderr.write data.toString()
+    process.exit(-1)
   coffee.stdout.on 'data', (data) ->
     print data.toString()
   coffee.on 'exit', (code) ->
