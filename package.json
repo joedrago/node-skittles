@@ -1,0 +1,34 @@
+{
+  "name": "skittles",
+  "description": "Skittles IRC Bot",
+  "keywords": [
+    "irc",
+    "ai",
+    "bot"
+  ],
+  "author": "Joe Drago",
+  "version": "0.0.1",
+  "license": "Boost",
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "main": "js/skittles.js",
+  "bin": {
+    "skittles": "./bin/skittles"
+  },
+  "homepage": "https://github.com/joedrago/node-skittles",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/joedrago/node-skittles.git"
+  },
+  "scripts": {
+    "build": "cake build",
+    "run": "cake run"
+  },
+  "devDependencies": {
+    "coffee-script": "*"
+  },
+  "dependencies": {
+    "minimist": "*"
+  }
+}
