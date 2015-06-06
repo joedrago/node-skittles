@@ -5,8 +5,13 @@
   util = require('util');
 
   Brain = (function() {
-    function Brain(bot) {
+    function Brain(nicknames, bot, loadCB) {
+      this.nicknames = nicknames;
       this.bot = bot;
+      this.loadCB = loadCB;
+      if (this.loadCB) {
+        this.loadCB();
+      }
     }
 
     Brain.prototype.react = function(channel, who, msg) {

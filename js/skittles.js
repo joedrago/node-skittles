@@ -30,8 +30,8 @@
       this.createClient();
     }
 
-    Skittles.prototype.createBrain = function() {
-      return this.brain = new Brain(this);
+    Skittles.prototype.createBrain = function(cb) {
+      return this.brain = new Brain(this.settings.nicknames, this, cb);
     };
 
     Skittles.prototype.createClient = function() {
@@ -89,7 +89,16 @@
     Skittles.prototype.onMessage = function(from, to, message) {
       util.log(from + ' => ' + to + ': ' + message);
       if (from !== this.settings.nicknames[0]) {
-        return this.brain.react(to, from, message);
+        this.brain.react(to, from, message);
+      }
+      if (to === this.settings.nicknames[0]) {
+        if (message === 'reload') {
+          return this.createBrain((function(_this) {
+            return function() {
+              return _this.respond(from, "Reloaded.", false);
+            };
+          })(this));
+        }
       }
     };
 

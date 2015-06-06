@@ -7,7 +7,8 @@ util = require 'util'
 # THE BRAAAAAAINS (of the bot)
 
 class Brain
-  constructor: (@bot) ->
+  constructor: (@nicknames, @bot, @loadCB) ->
+    @loadCB() if @loadCB
 
   react: (channel, who, msg) ->
     delayed = true

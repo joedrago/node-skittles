@@ -28,8 +28,8 @@ class Skittles
     @createBrain()
     @createClient()
 
-  createBrain: ->
-    @brain = new Brain(this)
+  createBrain: (cb) ->
+    @brain = new Brain(@settings.nicknames, this, cb)
 
   createClient: ->
     @client = new irc.Client @settings.host, @settings.nicknames[0], {
@@ -70,6 +70,11 @@ class Skittles
     util.log from + ' => ' + to + ': ' + message
     if from != @settings.nicknames[0]
       @brain.react(to, from, message)
+    if to == @settings.nicknames[0]
+      # private message
+      if message == 'reload'
+        @createBrain =>
+          @respond(from, "Reloaded.", false)
 
   onError: (error) ->
     util.error 'error: ' + error
