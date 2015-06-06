@@ -29,6 +29,7 @@
     "coffee-script": "*"
   },
   "dependencies": {
+    "irc": "*",
     "minimist": "*"
   }
 }

@@ -1,0 +1,12 @@
+{
+    "host": "localhost",
+    "port": 6667,
+
+    "nicknames": [
+        "Skittles"
+    ],
+
+    "channels": [
+        "#test"
+    ]
+}
