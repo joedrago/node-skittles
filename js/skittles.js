@@ -28,9 +28,14 @@
     }
 
     Skittles.prototype.createClient = function() {
-      return this.client = new irc.Client(this.settings.host, this.settings.nicknames[0], {
+      this.client = new irc.Client(this.settings.host, this.settings.nicknames[0], {
         channels: this.settings.channels
       });
+      return this.client.addListener('message', this.onMessage.bind(this));
+    };
+
+    Skittles.prototype.onMessage = function(from, to, message) {
+      return console.log(from + ' => ' + to + ': ' + message);
     };
 
     return Skittles;

@@ -21,5 +21,9 @@ class Skittles
     @client = new irc.Client @settings.host, @settings.nicknames[0], {
       channels: @settings.channels
     }
+    @client.addListener 'message', @onMessage.bind(this)
+
+  onMessage: (from, to, message) ->
+    console.log(from + ' => ' + to + ': ' + message);
 
 module.exports = Skittles
